@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Sanket from '../../Images/Sanket.png'
 
 function Navbar({ theme }) {
 
@@ -37,9 +36,6 @@ function Navbar({ theme }) {
                             </button>
                         </li>
                     </ul>
-                    <Link className="nav-link" to="/sanket" style={{ fontSize: '18px' }}>
-                        <img className="rounded-2" src={Sanket} alt="sanket" height={30} width={30}></img>
-                    </Link>
                 </div>
             </div>
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

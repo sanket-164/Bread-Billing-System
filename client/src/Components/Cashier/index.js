@@ -9,7 +9,6 @@ import CreateBill from './CreateBill';
 import Bills from './Bills';
 import BillReceipt from '../BillReceipt';
 import Settings from '../Settings';
-import Sanket from '../Sanket';
 
 function Cashier() {
     const [theme, setTheme] = useState(JSON.parse(localStorage.getItem('breadBillingTheme')));
@@ -29,7 +28,6 @@ function Cashier() {
                     <Route path='/billreceipt' exact element={<BillReceipt theme={theme} />} />
                     <Route path='/bills' exact element={<Bills theme={theme} />} />
                     <Route path='/settings' exact element={<Settings theme={theme} setTheme={setTheme} />} />
-                    <Route path='/sanket' exact element={<Sanket theme={theme} />} />
                 </Routes>
             </BrowserRouter>
 

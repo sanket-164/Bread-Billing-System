@@ -12,7 +12,6 @@ import BillReceipt from '../BillReceipt';
 import Bread from './Breads/Bread';
 import Breads from './Breads/Breads';
 import Settings from '../Settings';
-import Sanket from '../Sanket';
 
 function Admin() {
     const [theme, setTheme] = useState(JSON.parse(localStorage.getItem('breadBillingTheme')));
@@ -34,7 +33,6 @@ function Admin() {
                 <Route path='/breads' exact element={<Breads theme={theme} />} />
                 <Route path='/bread' exact element={<Bread theme={theme} />} />
                 <Route path='/settings' exact element={<Settings theme={theme} setTheme={setTheme} />} />
-                <Route path='/sanket' exact element={<Sanket theme={theme} />} />
             </Routes>
         </BrowserRouter>
     )
