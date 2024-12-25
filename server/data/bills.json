@@ -1,0 +1,209 @@
+[{
+  "_id": {
+    "$oid": "654e0bbaa8fb0629a78c1753"
+  },
+  "customer_name": "Natasha",
+  "customer_email": "natasha@gmail.com",
+  "cashier_id": "6470689447f5caa5de9c8e3e",
+  "breads": {
+    "Banana Bread": {
+      "quantity": 2,
+      "amount": 40
+    },
+    "Baguette": {
+      "quantity": 1,
+      "amount": 50
+    },
+    "Breadstick": {
+      "quantity": 3,
+      "amount": 40
+    },
+    "Brioche": {
+      "quantity": 1,
+      "amount": 60
+    },
+    "Ciabatta": {
+      "quantity": 1,
+      "amount": 50
+    },
+    "Focaccia": {
+      "quantity": 1,
+      "amount": 80
+    },
+    "Pumpernickel": {
+      "quantity": 1,
+      "amount": 120
+    },
+    "Multigrain Bread": {
+      "quantity": 2,
+      "amount": 70
+    }
+  },
+  "totalAmount": 700,
+  "purchasedAt": {
+    "$date": {
+      "$numberLong": "1699613539138"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "654e0c0ca8fb0629a78c176a"
+  },
+  "customer_name": "Peter Parker",
+  "customer_email": "peter@gmail.com",
+  "cashier_id": "6470689447f5caa5de9c8e3e",
+  "breads": {
+    "Focaccia": {
+      "quantity": 2,
+      "amount": 80
+    },
+    "Cornbread": {
+      "quantity": 2,
+      "amount": 40
+    },
+    "Ciabatta": {
+      "quantity": 1,
+      "amount": 50
+    },
+    "Challah": {
+      "quantity": 1,
+      "amount": 100
+    },
+    "Brioche": {
+      "quantity": 1,
+      "amount": 60
+    }
+  },
+  "totalAmount": 450,
+  "purchasedAt": {
+    "$date": {
+      "$numberLong": "1699613682538"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "654e0c69a8fb0629a78c179f"
+  },
+  "customer_name": "Thor",
+  "customer_email": "thor@gmail.com",
+  "cashier_id": "6470689447f5caa5de9c8e3e",
+  "breads": {
+    "Baguette": {
+      "quantity": 2,
+      "amount": 50
+    },
+    "Banana Bread": {
+      "quantity": 6,
+      "amount": 40
+    }
+  },
+  "totalAmount": 340,
+  "purchasedAt": {
+    "$date": {
+      "$numberLong": "1699613708927"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "654e0c7da8fb0629a78c17a6"
+  },
+  "customer_name": "Loki",
+  "customer_email": "loki@gmail.com",
+  "cashier_id": "6470689447f5caa5de9c8e3e",
+  "breads": {
+    "Breadstick": {
+      "quantity": 2,
+      "amount": 40
+    },
+    "Brioche": {
+      "quantity": 2,
+      "amount": 60
+    },
+    "Challah": {
+      "quantity": 3,
+      "amount": 100
+    },
+    "Ciabatta": {
+      "quantity": 2,
+      "amount": 50
+    },
+    "Cornbread": {
+      "quantity": 3,
+      "amount": 40
+    },
+    "Focaccia": {
+      "quantity": 1,
+      "amount": 80
+    },
+    "Multigrain Bread": {
+      "quantity": 1,
+      "amount": 70
+    }
+  },
+  "totalAmount": 870,
+  "purchasedAt": {
+    "$date": {
+      "$numberLong": "1699613801611"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "654e0d2fa8fb0629a78c17bd"
+  },
+  "customer_name": "Thanos",
+  "customer_email": "thanos5gems@gmail.com",
+  "cashier_id": "6470689447f5caa5de9c8e3e",
+  "breads": {
+    "Banana Bread": {
+      "quantity": 10,
+      "amount": 40
+    },
+    "Baguette": {
+      "quantity": 5,
+      "amount": 50
+    },
+    "Breadstick": {
+      "quantity": 8,
+      "amount": 40
+    },
+    "Brioche": {
+      "quantity": 6,
+      "amount": 60
+    },
+    "Challah": {
+      "quantity": 9,
+      "amount": 100
+    },
+    "Ciabatta": {
+      "quantity": 12,
+      "amount": 50
+    },
+    "Cornbread": {
+      "quantity": 13,
+      "amount": 40
+    },
+    "Focaccia": {
+      "quantity": 5,
+      "amount": 80
+    },
+    "Multigrain Bread": {
+      "quantity": 12,
+      "amount": 70
+    },
+    "Pumpernickel": {
+      "quantity": 20,
+      "amount": 120
+    }
+  },
+  "totalAmount": 6990,
+  "purchasedAt": {
+    "$date": {
+      "$numberLong": "1699613821077"
+    }
+  },
+  "__v": 0
+}]

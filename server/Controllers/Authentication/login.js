@@ -32,7 +32,7 @@ export const login = async (req, res) => {
             const checkPass = await bcrypt.compare(password, cashier.password);
 
             if (checkPass) {
-                const token = jwt.sign({ email: cashier.email, id: cashier._id }, 'sanket');
+                const token = jwt.sign({ email: cashier.email, id: cashier._id }, process.env.SECRET_KEY);
                 res.json({ success: true, token: token });
             } else {
                 return res.json({ success: false, message: "Wrong Creadentials" })
