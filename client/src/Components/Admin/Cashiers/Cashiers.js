@@ -79,7 +79,8 @@ function Cashiers({ theme }) {
             <div className="modal-header">
               <h5 className="modal-title" id="hireCashierModalLabel">Hire New Cashier</h5>
               <button type="button" id="modalClose" className={`btn-close bg-${(theme.text === 'white' ? 'light' : 'dark')}`} data-bs-dismiss="modal" aria-label="Close"
-                onClick={() =>
+                onClick={() => {
+
                   setCashier({
                     name: "",
                     email: "",
@@ -89,7 +90,9 @@ function Cashiers({ theme }) {
                     image: "",
                     joinedAt: new Date().toLocaleDateString(),
                     password: ""
-                  })}></button>
+                  })
+                }
+                }></button>
             </div>
             <form onSubmit={handleSubmit}>
               <div className="modal-body">
@@ -136,7 +139,7 @@ function Cashiers({ theme }) {
                 </div>
               </div>
               <div className="modal-footer d-flex justify-content-center">
-                <button type="submit" className={`btn btn-${(theme.text === 'white' ? 'light' : 'dark')} px-4`}>Hire Cashier</button>
+                <button type="submit" className={`btn btn-${(theme.text === 'white' ? 'light' : 'dark')} px-4`} data-bs-toggle="modal" data-bs-target="#newCashierHiredModal">Hire Cashier</button>
               </div>
             </form>
           </div>
@@ -198,6 +201,20 @@ function Cashiers({ theme }) {
                 <div className="modal-footer d-flex justify-content-center">
                   <button type="button" className={`btn btn-${(theme.text === 'white' ? 'light' : 'dark')} px-4`} onClick={() => { dispatch(deleteCashier(fire_Cashier.id)); navigate("/cashiers") }} data-bs-dismiss="modal">YES</button>
                   <button type="button" className={`btn btn-${(theme.text === 'white' ? 'light' : 'dark')} px-4`} data-bs-dismiss="modal">NO</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="modal fade" id="newCashierHiredModal" tabIndex="-1" aria-labelledby="newCashierHiredModalLabel" aria-hidden="true">
+            <div className="modal-dialog modal-dialog-centered">
+              <div className={`modal-content bg-${theme.color}`}>
+                <div className="modal-header">
+                    <h5>New Cashier Hired</h5>
+                  <button type="button" className={`btn-close bg-${(theme.text === 'white' ? 'light' : 'dark')}`} data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div className="modal-footer d-flex justify-content-center">
+                  <button type="button" className={`btn btn-${(theme.text === 'white' ? 'light' : 'dark')} px-4`} onClick={() => { navigate("/cashiers"); }} data-bs-dismiss="modal">Okay</button>
                 </div>
               </div>
             </div>

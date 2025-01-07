@@ -9,27 +9,27 @@ function Profile({ theme }) {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const handleChange = (e) => {
     setCashier({
       ...cashier, [e.target.name]: e.target.value
     })
   }
-  
+
   const [cashier, setCashier] = useState(useSelector((data) => data.cashierProfile));
-  
+
   useEffect(() => {
     dispatch(fetchProfile());
     dispatch(fetchProfile());
     dispatch(fetchProfile());
   }, [location, dispatch])
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateProfile({ cashier: cashier }));
     navigate('/profile')
   }
-  
+
   const birthDate = new Date(cashier.birthday);
   const cashier_birthdate = `${birthDate.getFullYear()}-${((birthDate.getMonth() + 1) < 10) ? `0${birthDate.getMonth() + 1}` : birthDate.getMonth() + 1}-${(birthDate.getDate() < 10) ? `0${birthDate.getDate()}` : birthDate.getDate()}`;
   console.log(cashier_birthdate);
@@ -67,12 +67,26 @@ function Profile({ theme }) {
                 </tr>
               </table>
               <div className="d-flex justify-content-center mt-3">
-                <button type='submit' className={`btn btn-${(theme.text === 'white' ? 'light' : 'dark')} px-4`}>UPDATE</button>
+                <button type='submit' data-bs-toggle="modal" data-bs-target="#profileChangedModal" className={`btn btn-${(theme.text === 'white' ? 'light' : 'dark')} px-4`}>UPDATE</button>
               </div>
             </form>
           </div>
         </div>
-      </div >
+
+        <div className="modal fade" id="profileChangedModal" tabIndex="-1" data-bs-keyboard="false" aria-labelledby="profileChangedModalLabel" aria-hidden="true">
+          <div className="modal-dialog modal-dialog-centered">
+            <div className={`modal-content bg-${theme.color}`}>
+              <div className="modal-header">
+                <h5>Profile Changed</h5>
+                <button type="button" className={`btn-close bg-${(theme.text === 'white' ? 'light' : 'dark')}`} data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-footer d-flex justify-content-center">
+                <button type="button" className={`btn btn-${(theme.text === 'white' ? 'light' : 'dark')} px-4`} onClick={() => { navigate("/profile"); }} data-bs-dismiss="modal">Okay</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     )
   )
 }

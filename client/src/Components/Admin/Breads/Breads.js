@@ -11,7 +11,7 @@ function Breads({ theme }) {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
-  const [bread, setBread] = useState({ name: "", amount: "", description: "", image: ""});
+  const [bread, setBread] = useState({ name: "", amount: "", description: "", image: "" });
 
   useEffect(() => {
     dispatch(fetchBreads());
@@ -20,8 +20,9 @@ function Breads({ theme }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addBread({ bread: bread }));
-    setBread({ name: "", amount: "", description: "", image: ""});
+    setBread({ name: "", amount: "", description: "", image: "" });
     navigate('/breads');
+    document.getElementById("breadModalClose").click();
   }
 
   const handleChange = (e) => {
@@ -57,7 +58,7 @@ function Breads({ theme }) {
             <div className={`modal-content bg-${theme.color}`}>
               <div className="modal-header">
                 <h5 className="modal-title" id="staticBackdropLabel">Enter Details for New Bread</h5>
-                <button type="button" className={`btn-close bg-${(theme.text === 'white' ? 'light' : 'dark')}`} data-bs-dismiss="modal" aria-label="Close" onClick={() => setBread({ name: "", amount: "", description: "", image: "" })}></button>
+                <button type="button" id="breadModalClose" className={`btn-close bg-${(theme.text === 'white' ? 'light' : 'dark')}`} data-bs-dismiss="modal" aria-label="Close" onClick={() => setBread({ name: "", amount: "", description: "", image: "" })}></button>
               </div>
               <form onSubmit={handleSubmit}>
                 <div className="modal-body">
@@ -81,7 +82,7 @@ function Breads({ theme }) {
                   </div>
                 </div>
                 <div className="modal-footer d-flex justify-content-center">
-                  <button type="submit" className={`btn btn-${(theme.text === 'white' ? 'light' : 'dark')}`} data-bs-dismiss="modal">Add New Bread</button>
+                  <button type="submit" data-bs-toggle="modal" data-bs-target="#newBreadAddedModal" className={`btn btn-${(theme.text === 'white' ? 'light' : 'dark')}`}>Add New Bread</button>
                 </div>
               </form>
             </div>
@@ -112,7 +113,7 @@ function Breads({ theme }) {
                   <td onClick={() => navigateToBread(bread)}>{bread.name}</td>
                   <td onClick={() => navigateToBread(bread)}>₹{bread.amount}</td>
                   <td>
-                    <button type="button" className="btn btn-danger btn-lg w-100 my-2" data-bs-toggle="modal" data-bs-target="#removeBreadModal" name="fire-btn" value={bread._id + ',' + bread.name} onClick={removeBread}>
+                    <button type="button" className="btn btn-danger btn-lg w-100 my-2" data-bs-toggle="modal" data-bs-target="#removeBreadModal" value={bread._id + ',' + bread.name} onClick={removeBread}>
                       REMOVE
                     </button>
                   </td>
@@ -150,6 +151,19 @@ function Breads({ theme }) {
         </div>
       )}
 
+      <div className="modal fade" id="newBreadAddedModal" tabIndex="-1" data-bs-keyboard="false" aria-labelledby="newBreadAddedModalLabel" aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered">
+          <div className={`modal-content bg-${theme.color}`}>
+            <div className="modal-header">
+              <h5>New Bread Added</h5>
+              <button type="button" className={`btn-close bg-${(theme.text === 'white' ? 'light' : 'dark')}`} data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div className="modal-footer d-flex justify-content-center">
+              <button type="button" className={`btn btn-${(theme.text === 'white' ? 'light' : 'dark')} px-4`} onClick={() => { navigate("/breads"); }} data-bs-dismiss="modal">Okay</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

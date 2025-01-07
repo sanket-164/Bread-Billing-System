@@ -21,7 +21,6 @@ const YourComponent = ({ theme }) => {
     console.log(cashier)
     e.preventDefault();
     dispatch(updateCashier(cashier._id, { cashier: cashier }));
-    navigate('/cashiers');
   }
 
   const birthDate = new Date(cashier.birthday);
@@ -102,9 +101,23 @@ const YourComponent = ({ theme }) => {
             </table>
             <div className="d-flex justify-content-between align-items-end mt-3">
               <Link to="/cashiers" className={`btn btn-${(theme.text === 'white' ? 'light' : 'dark')} px-4`}>Go Back</Link>
-              <button type='submit' className={`btn btn-${(theme.text === 'white' ? 'light' : 'dark')} px-4`}>UPDATE</button>
+              <button type='submit' className={`btn btn-${(theme.text === 'white' ? 'light' : 'dark')} px-4`} data-bs-toggle="modal" data-bs-target="#cashierProfileChangedModal">UPDATE</button>
             </div>
           </form>
+        </div>
+      </div>
+
+      <div className="modal fade" id="cashierProfileChangedModal" tabIndex="-1" data-bs-keyboard="false" aria-labelledby="cashierProfileChangedModalLabel" aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered">
+          <div className={`modal-content bg-${theme.color}`}>
+            <div className="modal-header">
+              <h5>Profile Changed</h5>
+              <button type="button" className={`btn-close bg-${(theme.text === 'white' ? 'light' : 'dark')}`} data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div className="modal-footer d-flex justify-content-center">
+              <button type="button" className={`btn btn-${(theme.text === 'white' ? 'light' : 'dark')} px-4`} onClick={() => { navigate(`/cashier`, { state: { cashier: cashier } }); }} data-bs-dismiss="modal">Okay</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

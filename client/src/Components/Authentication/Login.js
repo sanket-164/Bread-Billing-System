@@ -30,6 +30,9 @@ function Login() {
                 "color": "light"
             }));
             modalOpener.click();
+        } else {
+            const wrongCredentials = document.getElementById('wrongCredentials');
+            wrongCredentials.hidden = false;
         }
     }
 
@@ -40,6 +43,9 @@ function Login() {
                     <div className='m-4'>
                         <h2>Login</h2>
                         <form onSubmit={handleSubmit}>
+                            <div className="mb-3" id='wrongCredentials' hidden='true'>
+                                <label className="form-label border border-2 rounded text-danger border-danger w-100 d-flex justify-content-center">Wrong Credentials</label>
+                            </div>
                             <div className="mb-3">
                                 <label htmlFor="email" className="form-label">Email</label>
                                 <input type="email" className="form-control" id="email" name="email" onChange={handleChange} placeholder={`${user.role}'s Email`} required />
@@ -74,6 +80,7 @@ function Login() {
             </div>
 
             <button id="modalOpener" type="button" className="btn bg-transaprent" data-bs-toggle="modal" data-bs-target="#welcomeModal"></button>
+            <button id="wrongCredentialModal" type="button" className="btn bg-transaprent" data-bs-toggle="modal" data-bs-target="#credentialModal"></button>
 
             <div className="modal fade" id="welcomeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">
