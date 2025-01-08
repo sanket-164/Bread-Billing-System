@@ -50,11 +50,11 @@ function Profile({ theme }) {
                 </tr>
                 <tr>
                   <th>Email</th>
-                  <td><input className="form-control" type="text" name="name" value={admin.email} onChange={handleChange}></input></td>
+                  <td><input className="form-control" type="text" name="email" value={admin.email} onChange={handleChange}></input></td>
                 </tr>
                 <tr>
                   <th>Mobile No.</th>
-                  <td><input className="form-control" type="number" name="name" value={admin.phone} onChange={handleChange}></input></td>
+                  <td><input className="form-control" type="number" name="phone" value={admin.phone} onChange={handleChange}></input></td>
                 </tr>
                 <tr>
                   <th>Birth Date</th>
