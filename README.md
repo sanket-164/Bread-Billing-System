@@ -1,4 +1,4 @@
-# Bread Billing System
+# Bread Billing System (<a href="https://sanket-bread-billing.netlify.app/" target="__blank">**View**</a>)
 The Bread Billing System is a web application designed to simplify and streamline the billing process for a bakery or bread shop. It provides an intuitive interface for managing customer orders, generating invoices, and keeping track of sales data. This README.md file serves as a guide to understand the Bread Billing System and its features.
 
 ## Features
