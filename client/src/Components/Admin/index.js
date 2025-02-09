@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import BreadBilling from '../BreadBilling';
 import Home from './Home';
 import Navbar from './Navbar';
-import Profile from './Profile';
+// import Profile from './Profile';
 import Cashier from './Cashiers/Cashier';
 import Cashiers from './Cashiers/Cashiers';
 import Bills from './Bills/Bills';
@@ -24,7 +24,7 @@ function Admin() {
             <Routes>
                 <Route path='/' exact element={<BreadBilling theme={theme} />} />
                 <Route path='/home' exact element={<Home theme={theme} />} />
-                <Route path='/profile' exact element={<Profile theme={theme} />} />
+                {/* <Route path='/profile' exact element={<Profile theme={theme} />} /> */}
                 <Route path='/cashiers' exact element={<Cashiers theme={theme} />} />
                 <Route path='/cashier' exact element={<Cashier theme={theme} />} />
                 <Route path='/bills' exact element={<Bills theme={theme} />} />

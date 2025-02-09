@@ -15,9 +15,9 @@ function Navbar({ theme }) {
                         <li className="nav-item">
                             <Link className="nav-link active" aria-current="page" to="/home">Panel</Link>
                         </li>
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <Link className="nav-link" to="/profile">Profile</Link>
-                        </li>
+                        </li> */}
                         <li className="nav-item">
                             <Link className="nav-link" to="/bills">Bills</Link>
                         </li>
