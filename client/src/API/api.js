@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const adminAPI = axios.create({
-    baseURL: "http://localhost:4444/admin",
+    baseURL: `${process.env.REACT_APP_BACKEND_URL}/admin`,
     headers: {
         'Content-Type': 'application/json',
         'authToken': JSON.parse(localStorage.getItem('breadBilling'))?.token

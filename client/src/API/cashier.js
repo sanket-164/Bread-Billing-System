@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const cashierAPI = axios.create({
-    baseURL: "http://localhost:4444/cashier",
+    baseURL: `${process.env.REACT_APP_BACKEND_URL}cashier`,
     headers: {
         'Content-Type': 'application/json',
         'authToken': JSON.parse(localStorage.getItem('breadBilling'))?.token

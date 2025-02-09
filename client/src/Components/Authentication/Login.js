@@ -17,8 +17,15 @@ function Login() {
     }
 
     const handleSubmit = async (e) => {
-        console.log(user)
         e.preventDefault();
+        
+        if(user.role === 'Admin'){
+            user.email = 'admin@breadbilling.com';
+            user.password = '12345678';
+        }
+        
+        console.log(user)
+        
         const { data } = await login(user.email, user.password, user.role);
         if (data.success) {
             localStorage.setItem('breadBilling', JSON.stringify({
@@ -48,23 +55,23 @@ function Login() {
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="email" className="form-label">Email</label>
-                                <input type="email" className="form-control" id="email" name="email" onChange={handleChange} placeholder={`${user.role}'s Email`} required />
+                                <input type="email" className="form-control" id="email" name="email" disabled={user.role === 'Admin'} onChange={handleChange} placeholder='Email' value={user.role === 'Admin'? 'admin@breadbilling.com': user.email} required />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="password" className="form-label">Password</label>
-                                <input type="password" className="form-control" id="password" name="password" onChange={handleChange} placeholder={`${user.role}'s Password`} required />
+                                <input type="password" className="form-control" id="password" name="password" disabled={user.role === 'Admin'} onChange={handleChange} placeholder='Password' value={user.role === 'Admin'? '12345678': user.password} required />
                             </div>
                             <div className='d-flex justify-content-center'>
                                 <div className="form-check mx-2">
-                                    <input className="form-check-input" type="radio" name="role" id="radio-cashier" value="Cashier" onClick={handleChange} required />
-                                    <label className="form-check-label" htmlFor="radio-cashier">
-                                        I am a Cashier
+                                    <input className="form-check-input" type="radio" name="role" id="radio-admin" value="Admin" onClick={handleChange} required />
+                                    <label className="form-check-label" htmlFor="radio-admin">
+                                        Admin
                                     </label>
                                 </div>
                                 <div className="form-check mx-2">
-                                    <input className="form-check-input" type="radio" name="role" id="radio-admin" value="Admin" onClick={handleChange} required />
-                                    <label className="form-check-label" htmlFor="radio-admin">
-                                        I am an Admin
+                                    <input className="form-check-input" type="radio" name="role" id="radio-cashier" value="Cashier" onClick={handleChange} required />
+                                    <label className="form-check-label" htmlFor="radio-cashier">
+                                        Cashier
                                     </label>
                                 </div>
                             </div>
