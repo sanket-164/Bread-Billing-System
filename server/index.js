@@ -1,5 +1,4 @@
 import express from "express";
-import dotenv from "dotenv";
 import cors from "cors";
 import bodyParser from "body-parser";
 import connectToDatabase from "./database.js";
@@ -8,7 +7,6 @@ import authenticationRoutes from "./Routes/authenticationRoutes.js"
 import cashierRoutes from "./Routes/cashierRoutes.js"
 import morgan from "morgan";
 
-dotenv.config();
 const app = express();
 
 app.use(cors());
@@ -24,8 +22,8 @@ app.use('/cashier', cashierRoutes);
 app.use('/admin', adminRoutes);
 
 
-app.listen(process.env.PORT, () => {
-    console.log("Server listening on port http://localhost:" + process.env.PORT);
+app.listen(5000, () => {
+    console.log("Server listening on port http://localhost:" + 5000);
 });
 
 app.get('/', (req, res) => {
