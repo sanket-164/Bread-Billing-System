@@ -1,0 +1,23 @@
+services:
+  # Frontend Service (React)
+  frontend:
+    image: sanket164/bread-billing-system:client # Base Node.js image for building React app
+    container_name: frontend
+    ports:
+      - "3000:3000" # Map host port 3001 to container port 3000
+    environment:
+      - REACT_APP_BACKEND_URL=http://localhost:5000
+    depends_on:
+      - backend # Ensure the backend service starts before the frontend
+
+  # Backend Service (Express)
+  backend:
+    image: sanket164/bread-billing-system:server # Base Node.js image for building Express app
+    container_name: backend
+    ports:
+      - "5000:5000" # Map host port 6000 to container port 6000
+    environment:
+      - CONNECTION_STRING= # MongoDB connection URL
+      - SECRET_KEY= # Secret key for JWT
+      - EMAIL_USER=
+      - EMAIL_PASS=
