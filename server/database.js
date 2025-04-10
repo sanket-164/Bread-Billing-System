@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const connectToDatabase = () => {
-    mongoose.connect(process.env.CONNECTION_STRING);
+    mongoose.connect(process.env.CONNECTION_STRING || 'mongodb://0.0.0.0:27017/billingsystem');
 
     const db = mongoose.connection;
 
@@ -13,7 +13,7 @@ const connectToDatabase = () => {
     });
 
     db.once('open', () => {
-        console.log("Connected to database");
+        console.log("Connected to MonogDB");
     });
 }
 
