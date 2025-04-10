@@ -1,5 +1,6 @@
 import Bread from '../../Models/Bread.js';
 import Bill from '../../Models/Bill.js';
+import redisClient from '../../redisClient.js';
 
 export const createBill = async (req, res) => {
     const { bill } = req.body;
@@ -17,7 +18,15 @@ export const createBill = async (req, res) => {
 export const fetchBreads = async (req, res) => {
 
     try {
+        const cachedBreads = await redisClient.get("breads");
+                
+        if(cachedBreads) {
+            return res.status(200).json(JSON.parse(cachedBreads));
+        }
+
         const data = await Bread.find();
+
+        redisClient.set("breads", JSON.stringify(data));
 
         res.status(200).json(data);
     } catch (error) {

@@ -1,5 +1,6 @@
 import Cashier from "../../Models/Cashier.js";
 import bcrypt from "bcryptjs";
+import redisClient from "../../redisClient.js";
 
 export const fetchCashier = async (req, res) => {
     const { id } = req.params;
@@ -21,9 +22,17 @@ export const fetchCashier = async (req, res) => {
 export const fetchCashiers = async (req, res) => {
 
     try {
-        let data = await Cashier.find().sort({ joinedAt: 'desc' });
+        const cachedCashiers = await redisClient.get("cashiers");
+        
+        if (cachedCashiers) {
+            return res.status(200).json(JSON.parse(cachedCashiers));
+        }
 
-        res.status(200).json(data);
+        const cashiers = await Cashier.find().sort({ joinedAt: 'desc' });
+        
+        redisClient.set("cashiers", JSON.stringify(cashiers));
+
+        res.status(200).json(cashiers);
     } catch (error) {
         console.log(error.message);
         res.status(500).json({ message: error.message });
@@ -34,12 +43,13 @@ export const hireCashier = async (req, res) => {
     const { cashier } = req.body;
 
     const hashedPassword = await bcrypt.hash(cashier.password, 9);
-    console.log(cashier);
 
     try {
-        const data = Cashier.create({ ...cashier, password: hashedPassword });
+        const newCashier = Cashier.create({ ...cashier, password: hashedPassword });
 
-        res.status(201).json(data);
+        await redisClient.del("cashiers");
+        
+        res.status(201).json(newCashier);
     } catch (error) {
         console.log(error.message);
         res.status(500).json({ message: error.message });
@@ -52,7 +62,7 @@ export const updateCashier = async (req, res) => {
     const { cashier } = req.body;
 
     try {
-        const data = await Cashier.findByIdAndUpdate(id, {
+        const updatedCashier = await Cashier.findByIdAndUpdate(id, {
             name: cashier.name,
             email: cashier.email,
             phone: cashier.phone,
@@ -60,9 +70,11 @@ export const updateCashier = async (req, res) => {
             gender: cashier.gender,
             birthday: cashier.birthday
         });
-
-        if (data != null) {
-            res.status(200).json(cashier);
+        
+        if (updatedCashier != null) {
+            await redisClient.del("cashiers");
+            
+            res.status(200).json(updatedCashier);
         } else {
             res.status(400).json({ message: "Cashier does not exist" });
         }
@@ -76,10 +88,12 @@ export const deleteCashier = async (req, res) => {
     const { id } = req.params;
 
     try {
-        const data = await Cashier.findByIdAndDelete(id);
+        const deletedCashier = await Cashier.findByIdAndDelete(id);
 
-        if (data != null) {
-            res.status(200).json(data);
+        if (deletedCashier != null) {
+            await redisClient.del("cashiers");
+            
+            res.status(200).json(deletedCashier);
         } else {
             res.status(400).json({ message: "Cashier does not exist" });
         }

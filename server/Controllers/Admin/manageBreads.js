@@ -1,4 +1,5 @@
 import Bread from "../../Models/Bread.js";
+import redisClient from "../../redisClient.js";
 
 export const fetchBread = async (req, res) => {
     const { id } = req.params;
@@ -20,7 +21,15 @@ export const fetchBread = async (req, res) => {
 export const fetchBreads = async (req, res) => {
 
     try {
+        const cachedBreads = await redisClient.get("breads");
+        
+        if(cachedBreads) {
+            return res.status(200).json(JSON.parse(cachedBreads));
+        }
+
         const breads = await Bread.find();
+
+        redisClient.set("breads", JSON.stringify(breads));
 
         res.status(200).json(breads);
     } catch (error) {
@@ -31,9 +40,11 @@ export const fetchBreads = async (req, res) => {
 
 export const addBread = async (req, res) => {
     const { bread } = req.body;
-    console.log(bread)
+    
     try {
         const data = await Bread.create(bread);
+
+        await redisClient.del("breads");
         
         res.status(201).json(data);
     } catch (error) {
@@ -46,12 +57,12 @@ export const updateBread = async (req, res) => {
     const { id } = req.params;
     const { bread } = req.body;
 
-    console.log(bread);
-
     try {
-        const data = await Bread.findByIdAndUpdate( id, bread);
+        const data = await Bread.findByIdAndUpdate(id, bread);
 
         if(data != null) {
+            await redisClient.del("breads");
+
             res.status(200).json(data);
         } else {
             res.status(400).json({ message: "Bread is not availabel"});
@@ -70,6 +81,8 @@ export const deleteBread = async (req, res) => {
         const data = await Bread.findByIdAndDelete( id );
 
         if(data != null) {
+            await redisClient.del("breads");
+
             res.status(200).json(data);
         } else {
             res.status(400).json({ message: "Bread not availabel"});
