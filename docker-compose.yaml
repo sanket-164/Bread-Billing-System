@@ -9,15 +9,34 @@ services:
       - REACT_APP_BACKEND_URL=http://localhost:5000
     depends_on:
       - backend # Ensure the backend service starts before the frontend
+    networks:
+      - billing_network
 
   # Backend Service (Express)
   backend:
-    image: sanket164/bread-billing-system:server # Base Node.js image for building Express app
+    image: sanket164/bread-billing-system:server-with-redis # Base Node.js image for building Express app
     container_name: backend
     ports:
       - "5000:5000" # Map host port 6000 to container port 6000
     environment:
-      - CONNECTION_STRING= # MongoDB connection URL
+      - CONNECTION_STRING= # MongoDB Cluster connection URL
+      - REDIS_URL=redis://redis:6379 # Redis connection URL
       - SECRET_KEY= # Secret key for JWT
       - EMAIL_USER=
       - EMAIL_PASS=
+    networks:
+      - billing_network
+    
+  # Redis Service
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379" # Optional: expose to host if needed
+    restart: always
+    networks:
+      - billing_network
+
+networks:
+  billing_network:
+    driver: bridge

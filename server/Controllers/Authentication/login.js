@@ -18,7 +18,7 @@ export const login = async (req, res) => {
             const checkPass = await bcrypt.compare(password, admin.password);
 
             if (checkPass) {
-                const token = jwt.sign({ email: admin.email, id: admin._id }, process.env.SECRET_KEY);
+                const token = jwt.sign({ email: admin.email, id: admin._id }, process.env.SECRET_KEY || 'you_should_use_your_own_secret_key');
                 res.json({ success: true, token: token });
             } else {
                 return res.json({ success: false, message: "Wrong Creadentials" })
@@ -32,7 +32,7 @@ export const login = async (req, res) => {
             const checkPass = await bcrypt.compare(password, cashier.password);
 
             if (checkPass) {
-                const token = jwt.sign({ email: cashier.email, id: cashier._id }, process.env.SECRET_KEY);
+                const token = jwt.sign({ email: cashier.email, id: cashier._id }, process.env.SECRET_KEY || 'you_should_use_your_own_secret_key');
                 res.json({ success: true, token: token });
             } else {
                 return res.json({ success: false, message: "Wrong Creadentials" })
